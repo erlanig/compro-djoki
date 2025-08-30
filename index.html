@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DjokiCoding</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" href="img/icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --purple-600:#7c3aed; /* accent */
+      --purple-700:#6d28d9;
+    }
+    body { font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #ffffff; color: #0b1220; -webkit-font-smoothing:antialiased; }
+    /* Projects large card look */
+    .project-card {
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+      transition: transform .28s ease, box-shadow .28s ease;
+      border: 1px solid rgba(15,23,42,0.06);
+    }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(12,12,20,0.08); }
+    /* rounded large image with soft shadow */
+    .project-media { border-radius: 18px 18px 0 0; display:block; width:100%; height:420px; object-fit:cover; }
+    @media (max-width: 900px) {
+      .project-media { height: 260px; }
+    }
+
+    /* floating round decorative ribbons like screenshot */
+    .decor-ribbon {
+      position:absolute; right:-80px; top:40%;
+      width:300px; height:300px; border-radius:999px; background:transparent;
+      pointer-events:none; transform:rotate(18deg);
+      background-image: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.06), transparent 20%);
+    }
+
+    /* footer gradient */
+    .footer-grad { background: linear-gradient(90deg,#3f2152 0%, #6b2f8e 100%); color:white; }
+
+    /* CTA right circle image */
+    .hero-figure {
+        width: 360px;
+        height: 360px;
+        border-radius: 999px;
+        overflow: visible; /* agar elemen absolute bisa muncul di luar lingkaran */
+        display: block;
+        object-fit: contain; /* jangan cover, supaya transparan tetap terlihat */
+        background: transparent; /* pastikan background tetap transparan */
+        position: relative;
+        z-index: 10; /* berada di atas layer lain */
+    }
+
+    /* styles for the services cards */
+    .service-card {
+      background-color: #f7f5fa; /* A very light purple-white background */
+      border-radius: 1rem; /* large rounded corners */
+      padding: 2.5rem 2rem; /* ample padding */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.02); /* soft shadow */
+      border: 1px solid rgba(15,23,42,0.04);
+    }
+    .service-card h3 {
+      font-size: 1.5rem; /* a large, bold heading */
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .service-card p {
+      color: #64748b; /* slate-500 equivalent for the description */
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .service-card ul li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .service-card ul li .icon {
+      color: #6d28d9; /* The purple color for the checkmark */
+      font-weight: 900;
+    }
+
+    /* styles for the FAQ accordion */
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1.5rem 0;
+    }
+    .faq-question {
+      font-weight: 600;
+      font-size: 1.125rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      color: #64748b;
+      margin-top: 1rem;
+      display: none;
+      transition: all 0.3s ease-in-out;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease-in-out;
+    }
+    .faq-icon.rotate {
+      transform: rotate(180deg);
+    }
+
+    /* Styles for the commitment cards */
+    .commitment-card {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 2rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .commitment-card .icon-container {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fixed w-full z-50 bg-white/60 backdrop-blur-sm border-b">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <a class="font-extrabold text-xl tracking-tight" href="#">Djoki<span class="text-purple-600">Coding.</span></a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-700">
+        <a href="#services" class="hover:text-purple-700">Services</a>
+        <a href="#projects-innovation" class="hover:text-purple-700">Project Innovation</a>
+        <a href="#commitment" class="hover:text-purple-700">Komitmen</a>
+        <a href="#faq" class="hover:text-purple-700">FAQ</a>
+        <a href="#contact" class="hover:text-purple-700">Contact</a>
+      </nav>
+      <div class="md:hidden"></div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+
+    <section class="pt-16 pb-24">
+    <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+            Nggak usah pusing mikirin urusan IT, <span class="text-purple-700">DjokiCoding</span> siap jadi partner andalan lo! 🚀
+            </h1>
+            <p class="text-slate-600 mb-8 max-w-xl">
+            Dari bikin web & aplikasi kece, sampe mentoring santai biar lo makin jago ngoding. Kita gaspol ngerjainnya, cepet kelar tapi tetep berkualitas.  
+            </p>
+            <p class="text-purple-700 font-semibold italic mb-6">
+            #BiarKamiYangPusingLoTinggalHealing 💻✨
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-3 bg-purple-700 text-white font-semibold px-6 py-3 rounded-full shadow hover:opacity-95">
+            WhatsApp Sekarang →
+            </a>
+        </div>
+        <div class="flex justify-center lg:justify-end relative">
+          <div class="relative">
+            <img src="img/consult.png" alt="hero person" class="hero-figure">
+            <div class="absolute -left-2 -bottom-6 w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow">🔐</div>
+            <div class="absolute -right-0 top-6 w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow">🌐</div>
+            <div class="absolute -right-0 bottom-10 w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow z-20">💻</div>
+            <div class="absolute -left-2 top-10 w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow z-20">📝</div>
+            <div class="absolute right-20 -top-8 w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow z-20">💡</div>
+            <div class="absolute left-20 bottom-2 w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow z-20">⚡</div>
+            <div class="absolute right-20 bottom-0 w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow z-20">📊</div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-8">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white rounded-2xl p-6 shadow-sm border">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl">🤝</div>
+            <div>
+              <div class="text-3xl font-extrabold">45+</div>
+              <div class="text-slate-500">Projects</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 border-l border-r px-6">
+            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl">👍</div>
+            <div>
+              <div class="text-3xl font-extrabold">95%</div>
+              <div class="text-slate-500">Cust. Satisfaction</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl">🏆</div>
+            <div>
+              <div class="text-3xl font-extrabold">2+ Years</div>
+              <div class="text-slate-500">Experience in The Industry</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-12 md:py-24" style="background: linear-gradient(180deg, #fbfaff 0%, #f4f2ff 100%);">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Services Kami</div>
+          <h2 class="text-4xl font-extrabold mt-4">Pilih Layanan untuk Anda</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="service-card">
+            <h3 class="font-extrabold text-slate-800">General Task</h3>
+            <p class="text-slate-600">
+              Layanan yang mendukung tugas dan kebutuhan umum.
+            </p>
+            <ul class="text-slate-700">
+              <li><span class="icon">✔</span> Resume Writing</li>
+              <li><span class="icon">✔</span> Essay Assistance</li>
+              <li><span class="icon">✔</span> Report Creation</li>
+              <li><span class="icon">✔</span> Journal & Research</li>
+              <li><span class="icon">✔</span> Presentation Design</li>
+            </ul>
+          </div>
+          
+          <div class="service-card">
+            <h3 class="font-extrabold text-slate-800">Project Development</h3>
+            <p class="text-slate-600">
+              Berfokus pada pengembangan dan pengelolaan berbagai proyek.
+            </p>
+            <ul class="text-slate-700">
+              <li><span class="icon">✔</span> Web Development</li>
+              <li><span class="icon">✔</span> Mobile Development</li>
+              <li><span class="icon">✔</span> Data Science</li>
+              <li><span class="icon">✔</span> Database Management</li>
+              <li><span class="icon">✔</span> Api Integration</li>
+            </ul>
+          </div>
+          
+          <div class="service-card">
+            <h3 class="font-extrabold text-slate-800">Computer Science</h3>
+            <p class="text-slate-600">
+              Layanan dan tugas terkait IT.
+            </p>
+            <ul class="text-slate-700">
+              <li><span class="icon">✔</span> Calculus</li>
+              <li><span class="icon">✔</span> Algorithm Analysis</li>
+              <li><span class="icon">✔</span> Data Structures</li>
+              <li><span class="icon">✔</span> Discrete Mathematics</li>
+              <li><span class="icon">✔</span> Software Engineering</li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="projects-innovation" class="py-12 md:py-24">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Project Innovation</div>
+          <h2 class="text-4xl font-extrabold mt-4 mb-4">Mewujudkan Visi Unik Anda: Pendekatan Proyek Kustom Kami</h2>
+          <p class="text-slate-600 text-lg text-justify">
+            Kami berspesialisasi dalam menciptakan solusi digital yang dirancang khusus untuk selaras dengan kebutuhan unik Anda. Dari konsep hingga peluncuran, kami merencanakan, mendesain, dan mengembangkan setiap proyek kustom dengan teliti, penuh semangat, dan presisi, memastikan hasilnya melampaui ekspektasi Anda.
+          </p>
+        </div>
+        
+        <div class="flex justify-center">
+          <img src="https://placehold.co/500x350/f7f5fa/7c3aed?text=Custom+Project+Innovation" alt="Custom Project Innovation" class="rounded-3xl shadow-lg">
+        </div>
+      </div>
+    </section>
+    
+    <section id="commitment" class="py-12 md:py-24" style="background: #fbfaff;">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Komitmen Kami</div>
+          <h2 class="text-4xl font-extrabold mt-4">Komitmen DjokiCoding untuk Pelanggan</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="commitment-card text-center">
+            <div class="icon-container mx-auto">👨‍💻</div>
+            <h4 class="font-bold text-lg mb-2">Ahli dalam Coding & Solusi IT</h4>
+            <p class="text-slate-600">
+              Kami menyediakan solusi coding dan IT tingkat ahli yang disesuaikan dengan kebutuhan Anda.
+            </p>
+          </div>
+          
+          <div class="commitment-card text-center">
+            <div class="icon-container mx-auto">🛠️</div>
+            <h4 class="font-bold text-lg mb-2">Proyek Kustom | Tugas Umum Jadi Mudah</h4>
+            <p class="text-slate-600">
+              Sederhanakan proyek dan tugas Anda dengan solusi dan alat kustom kami.
+            </p>
+          </div>
+          
+          <div class="commitment-card text-center">
+            <div class="icon-container mx-auto">⏱️</div>
+            <h4 class="font-bold text-lg mb-2">Bantuan Kuis Real-time</h4>
+            <p class="text-slate-600">
+              Dapatkan bantuan dan dukungan instan untuk kuis Anda secara real-time.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-12 md:py-24">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Tanya Jawab</div>
+          <h2 class="text-4xl font-extrabold mt-4">Pertanyaan yang Sering Diajukan</h2>
+        </div>
+        
+        <div class="max-w-3xl mx-auto">
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Layanan apa saja yang DjokiCoding tawarkan?
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Kami berspesialisasi dalam proyek kustom, bantuan tugas IT umum, dan dukungan kuis real-time untuk topik coding dan IT.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Apakah Anda menerima proyek pengembangan software custom?
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Tentu saja! Kami sangat ahli dalam mengembangkan solusi coding kustom yang disesuaikan dengan kebutuhan unik Anda. Mari kita diskusikan proyek Anda.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Tugas IT umum apa yang bisa dibantu?
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Kami bisa membantu berbagai macam tugas, termasuk scripting, penanganan data, otomatisasi, dan kebutuhan teknis umum lainnya. Beri tahu kami apa yang Anda butuhkan!
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Apa yang dimaksud dengan layanan "dukungan kuis real-time"?
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Layanan ini menyediakan bantuan selama kuis Anda dengan menawarkan panduan dan penjelasan untuk membantu Anda memahami konsep dan menemukan solusi.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Bagaimana cara menghubungi Anda untuk konsultasi?
+              <span class="faq-icon">▼</span>
+            </div>
+            <div class="faq-answer">
+              Anda bisa menghubungi kami untuk konsultasi atau mendiskusikan kebutuhan spesifik Anda dengan menghubungi kami di 📞+62 851‑7442‑4245. Kami siap membantu!
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-12">
+      <div class="container mx-auto px-6">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Our Projects</div>
+            <h2 class="text-4xl font-extrabold mt-4">Projects Gallery</h2>
+          </div>
+          <div class="flex gap-3">
+            <button class="p-3 rounded-xl bg-white shadow border"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="p-3 rounded-xl bg-white shadow border"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <article class="project-card">
+              <img class="project-media" src="/mnt/data/8dc5b0fe-8f3b-4eb4-9458-26683fa3fbc5.png" alt="App Development - Plantix">
+              <div class="p-8">
+                <h3 class="text-2xl font-extrabold mb-2">App Development</h3>
+                <p class="text-slate-600">Plantix - Detection Plant Disease Apps</p>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <img class="project-media" src="/mnt/data/accef001-b5af-4758-b9c6-9da6868d974b.png" alt="Web Development - Plantify">
+              <div class="p-8">
+                <h3 class="text-2xl font-extrabold mb-2">Web Development</h3>
+                <p class="text-slate-600">Plantify - Detection Plant Disease Web</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="decor-ribbon hidden lg:block"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer-grad mt-12">
+    <div class="container mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-md bg-white/10 flex items-center justify-center font-bold"><img src="img/iconwhites.png"></div>
+            <div class="text-white font-extrabold text-lg">DjokiCoding</div>
+          </div>
+          <p class="text-white/80 max-w-md">
+            Daripada Mikir Keras, Mending Chill. <span class="font-semibold">DjokiCoding</span> Bikin Tugas Lo Done.
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-4">Social Media</h4>
+            <ul class="space-y-3 text-white/90">
+                <li>
+                    <a href="https://instagram.com/djokicoding" target="_blank" class="flex items-center gap-3 hover:text-purple-400 transition">
+                    <span class="w-8 h-8 bg-white rounded-md grid place-items-center text-purple-700">
+                        <i class="fab fa-instagram"></i>
+                    </span>
+                    djokicoding
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-4">Contact & Info</h4>
+            <ul class="space-y-3 text-white/90">
+                <li>
+                <a href="mailto:djokicoding@gmail.com" class="flex items-center gap-3 hover:text-blue-400 transition">
+                    <span class="w-8 h-8 rounded-md bg-white grid place-items-center text-slate-800">
+                    <i class="fas fa-envelope"></i>
+                    </span>
+                    djokicoding@gmail.com
+                </a>
+                </li>
+                <li>
+                <a href="https://wa.me/6285174424245" target="_blank" class="flex items-center gap-3 hover:text-green-400 transition">
+                    <span class="w-8 h-8 rounded-md bg-white grid place-items-center text-green-600">
+                    <i class="fab fa-whatsapp"></i>
+                    </span>
+                    +62 851-7442-4245
+                </a>
+                </li>
+            </ul>
+        </div>
+
+      <div class="mt-10 border-t border-white/10 pt-6 text-white/70 text-sm">
+        DjokiCoding | ©2025 All rights reserved
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+        
+        // Hide all other answers and rotate their icons back
+        document.querySelectorAll('.faq-answer.show').forEach(openAnswer => {
+          if (openAnswer !== answer) {
+            openAnswer.classList.remove('show');
+            openAnswer.previousElementSibling.querySelector('.faq-icon').classList.remove('rotate');
+          }
+        });
+        
+        // Toggle the clicked answer and its icon
+        answer.classList.toggle('show');
+        icon.classList.toggle('rotate');
+      });
+    });
+  </script>
+</body>
+</html>
