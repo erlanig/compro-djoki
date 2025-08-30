@@ -131,6 +131,14 @@
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body>
@@ -276,7 +284,7 @@
         </div>
         
         <div class="flex justify-center">
-          <img src="https://placehold.co/500x350/f7f5fa/7c3aed?text=Custom+Project+Innovation" alt="Custom Project Innovation" class="rounded-3xl shadow-lg">
+          <img src="img/buble.png" alt="Custom Project Innovation">
         </div>
       </div>
     </section>
@@ -381,42 +389,57 @@
       </div>
     </section>
 
-    <section id="projects" class="py-12">
-      <div class="container mx-auto px-6">
-        <div class="flex items-center justify-between mb-8">
-          <div>
-            <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Our Projects</div>
-            <h2 class="text-4xl font-extrabold mt-4">Projects Gallery</h2>
-          </div>
-          <div class="flex gap-3">
-            <button class="p-3 rounded-xl bg-white shadow border"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <button class="p-3 rounded-xl bg-white shadow border"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          </div>
+   <section id="projects" class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Our Projects</div>
+          <h2 class="text-4xl font-extrabold mt-4">Projects Gallery</h2>
         </div>
-
-        <div class="relative">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <article class="project-card">
-              <img class="project-media" src="/mnt/data/8dc5b0fe-8f3b-4eb4-9458-26683fa3fbc5.png" alt="App Development">
-              <div class="p-8">
-                <h3 class="text-2xl font-extrabold mb-2">App Development</h3>
-                <p class="text-slate-600">Warmindo App</p>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <img class="project-media" src="/mnt/data/accef001-b5af-4758-b9c6-9da6868d974b.png" alt="Web Development">
-              <div class="p-8">
-                <h3 class="text-2xl font-extrabold mb-2">Web Development</h3>
-                <p class="text-slate-600">Web Kos TIFA</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="decor-ribbon hidden lg:block"></div>
+        <div class="flex gap-3">
+          <button id="prevBtn" class="p-3 rounded-xl bg-white shadow border">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18l-6-6 6-6" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button id="nextBtn" class="p-3 rounded-xl bg-white shadow border">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+              <path d="M9 6l6 6-6 6" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
-    </section>
+
+      <!-- Slider Wrapper -->
+      <div class="relative overflow-hidden">
+        <div id="project-slider" class="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+          <article class="project-card flex-shrink-0 w-full sm:w-1/2 snap-start">
+            <img class="project-media" src="img/project1.png" alt="Web Development">
+            <div class="p-8">
+              <h3 class="text-2xl font-extrabold mb-2">Web Development</h3>
+              <p class="text-slate-600">Tracking Pengiriman Barang</p>
+            </div>
+          </article>
+
+          <article class="project-card flex-shrink-0 w-full sm:w-1/2 snap-start">
+            <img class="project-media" src="img/project1.png" alt="Web Development">
+            <div class="p-8">
+              <h3 class="text-2xl font-extrabold mb-2">Web Development</h3>
+              <p class="text-slate-600">Tracking Pengiriman Barang</p>
+            </div>
+          </article>
+
+          <article class="project-card flex-shrink-0 w-full sm:w-1/2 snap-start">
+            <img class="project-media" src="img/project1.png" alt="Web Development">
+            <div class="p-8">
+              <h3 class="text-2xl font-extrabold mb-2">Web Development</h3>
+              <p class="text-slate-600">Tracking Pengiriman Barang</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
   </main>
 
   <footer id="contact" class="footer-grad mt-12">
@@ -491,6 +514,23 @@
         answer.classList.toggle('show');
         icon.classList.toggle('rotate');
       });
+    });
+
+    const slider = document.getElementById('project-slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function getSlideWidth() {
+      const card = slider.querySelector('.project-card');
+      return card.offsetWidth + 32; // gap-8 = 32px
+    }
+
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
     });
   </script>
 </body>
