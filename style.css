@@ -1,0 +1,142 @@
+:root{
+      --purple-600:#7c3aed; /* accent */
+      --purple-700:#6d28d9;
+    }
+    html { scroll-behavior: smooth; } /* Added smooth scroll */
+    body { font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #ffffff; color: #0b1220; -webkit-font-smoothing:antialiased; }
+    /* Projects large card look */
+    .project-card {
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+      transition: transform .28s ease, box-shadow .28s ease;
+      border: 1px solid rgba(15,23,42,0.06);
+    }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(12,12,20,0.08); }
+    /* rounded large image with soft shadow */
+    .project-media { border-radius: 18px 18px 0 0; display:block; width:100%; height:420px; object-fit:cover; }
+    @media (max-width: 900px) {
+      .project-media { height: 260px; }
+    }
+
+    /* floating round decorative ribbons like screenshot */
+    .decor-ribbon {
+      position:absolute; right:-80px; top:40%;
+      width:300px; height:300px; border-radius:999px; background:transparent;
+      pointer-events:none; transform:rotate(18deg);
+      background-image: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.06), transparent 20%);
+    }
+
+    /* footer gradient */
+    .footer-grad { background: linear-gradient(90deg,#3f2152 0%, #6b2f8e 100%); color:white; }
+
+    /* CTA right circle image */
+    .hero-figure {
+        width: 360px;
+        height: 360px;
+        border-radius: 999px;
+        overflow: visible; /* agar elemen absolute bisa muncul di luar lingkaran */
+        display: block;
+        object-fit: contain; /* jangan cover, supaya transparan tetap terlihat */
+        background: transparent; /* pastikan background tetap transparan */
+        position: relative;
+        z-index: 10; /* berada di atas layer lain */
+    }
+
+    /* styles for the services cards */
+    .service-card {
+      background-color: #f7f5fa; /* A very light purple-white background */
+      border-radius: 1rem; /* large rounded corners */
+      padding: 2.5rem 2rem; /* ample padding */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.02); /* soft shadow */
+      border: 1px solid rgba(15,23,42,0.04);
+    }
+    .service-card h3 {
+      font-size: 1.5rem; /* a large, bold heading */
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .service-card p {
+      color: #64748b; /* slate-500 equivalent for the description */
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .service-card ul li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .service-card ul li .icon {
+      color: #6d28d9; /* The purple color for the checkmark */
+      font-weight: 900;
+    }
+
+    /* styles for the FAQ accordion */
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1.5rem 0;
+    }
+    .faq-question {
+      font-weight: 600;
+      font-size: 1.125rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      color: #64748b;
+      margin-top: 1rem;
+      display: none;
+      transition: all 0.3s ease-in-out;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease-in-out;
+    }
+    .faq-icon.rotate {
+      transform: rotate(180deg);
+    }
+
+    /* Styles for the commitment cards */
+    .commitment-card {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 2rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .commitment-card .icon-container {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Animation on scroll classes */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }

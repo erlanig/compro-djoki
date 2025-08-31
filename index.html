@@ -8,150 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="icon" type="image/png" href="img/icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --purple-600:#7c3aed; /* accent */
-      --purple-700:#6d28d9;
-    }
-    html { scroll-behavior: smooth; } /* Added smooth scroll */
-    body { font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #ffffff; color: #0b1220; -webkit-font-smoothing:antialiased; }
-    /* Projects large card look */
-    .project-card {
-      border-radius: 18px;
-      overflow: hidden;
-      background: white;
-      transition: transform .28s ease, box-shadow .28s ease;
-      border: 1px solid rgba(15,23,42,0.06);
-    }
-    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(12,12,20,0.08); }
-    /* rounded large image with soft shadow */
-    .project-media { border-radius: 18px 18px 0 0; display:block; width:100%; height:420px; object-fit:cover; }
-    @media (max-width: 900px) {
-      .project-media { height: 260px; }
-    }
-
-    /* floating round decorative ribbons like screenshot */
-    .decor-ribbon {
-      position:absolute; right:-80px; top:40%;
-      width:300px; height:300px; border-radius:999px; background:transparent;
-      pointer-events:none; transform:rotate(18deg);
-      background-image: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.06), transparent 20%);
-    }
-
-    /* footer gradient */
-    .footer-grad { background: linear-gradient(90deg,#3f2152 0%, #6b2f8e 100%); color:white; }
-
-    /* CTA right circle image */
-    .hero-figure {
-        width: 360px;
-        height: 360px;
-        border-radius: 999px;
-        overflow: visible; /* agar elemen absolute bisa muncul di luar lingkaran */
-        display: block;
-        object-fit: contain; /* jangan cover, supaya transparan tetap terlihat */
-        background: transparent; /* pastikan background tetap transparan */
-        position: relative;
-        z-index: 10; /* berada di atas layer lain */
-    }
-
-    /* styles for the services cards */
-    .service-card {
-      background-color: #f7f5fa; /* A very light purple-white background */
-      border-radius: 1rem; /* large rounded corners */
-      padding: 2.5rem 2rem; /* ample padding */
-      box-shadow: 0 10px 20px rgba(0,0,0,0.02); /* soft shadow */
-      border: 1px solid rgba(15,23,42,0.04);
-    }
-    .service-card h3 {
-      font-size: 1.5rem; /* a large, bold heading */
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .service-card p {
-      color: #64748b; /* slate-500 equivalent for the description */
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-    }
-    .service-card ul li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    .service-card ul li .icon {
-      color: #6d28d9; /* The purple color for the checkmark */
-      font-weight: 900;
-    }
-
-    /* styles for the FAQ accordion */
-    .faq-item {
-      border-bottom: 1px solid #e2e8f0;
-      padding: 1.5rem 0;
-    }
-    .faq-question {
-      font-weight: 600;
-      font-size: 1.125rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .faq-answer {
-      color: #64748b;
-      margin-top: 1rem;
-      display: none;
-      transition: all 0.3s ease-in-out;
-    }
-    .faq-answer.show {
-      display: block;
-    }
-    .faq-icon {
-      transition: transform 0.3s ease-in-out;
-    }
-    .faq-icon.rotate {
-      transform: rotate(180deg);
-    }
-
-    /* Styles for the commitment cards */
-    .commitment-card {
-        background-color: #fff;
-        border-radius: 1rem;
-        padding: 2rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    .commitment-card .icon-container {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 50%;
-      background: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Animation on scroll classes */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .fade-in.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -175,7 +32,7 @@
     <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div class="fade-in">
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
-            Nggak usah pusing mikirin urusan IT, <span class="text-purple-700">DjokiCoding</span> siap jadi partner andalan lo! 🚀
+            Nggak usah pusing mikirin urusan/tugas IT, <span class="text-purple-700">DjokiCoding</span> siap jadi partner andalan lo! 🚀
             </h1>
             <p class="text-slate-600 mb-8 max-w-xl">
             Dari bikin web & aplikasi kece, sampe mentoring santai biar lo makin jago ngoding. Kita gaspol ngerjainnya, cepet kelar tapi tetep berkualitas.  
@@ -206,24 +63,24 @@
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white rounded-2xl p-6 shadow-sm border fade-in">
           <div class="flex items-center gap-4">
-            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl">🤝</div>
+            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl"><img src="img/ic_project.png"></div>
             <div>
               <div class="text-3xl font-extrabold">45+</div>
-              <div class="text-slate-500">Projects Completed</div>
+              <div class="text-slate-500">Proyek Selesai</div>
             </div>
           </div>
           <div class="flex items-center gap-4 md:border-l md:border-r md:px-6">
-            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl">👍</div>
+            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl"><img src="img/ic_customer.png"></div>
             <div>
               <div class="text-3xl font-extrabold">95%</div>
-              <div class="text-slate-500">Cust. Satisfaction</div>
+              <div class="text-slate-500">Kepuasan Pelanggan</div>
             </div>
           </div>
           <div class="flex items-center gap-4">
-            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl">🏆</div>
+            <div class="w-16 h-16 rounded-lg bg-white shadow flex items-center justify-center text-2xl"><img src="img/ic_experience.png"></div>
             <div>
               <div class="text-3xl font-extrabold">2+ Years</div>
-              <div class="text-slate-500">Experience in The Industry</div>
+              <div class="text-slate-500">Pengalaman di Industri</div>
             </div>
           </div>
         </div>
@@ -289,7 +146,7 @@
       <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div class="fade-in">
           <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Project Innovation</div>
-          <h2 class="text-4xl font-extrabold mt-4 mb-4">Mewujudkan Visi Unik Anda: Pendekatan Proyek Kustom Kami</h2>
+          <h2 class="text-4xl font-extrabold mt-4 mb-4">Dari Khayalan Jadi Kenyataan: Proyek Custom Anti-Mainstream Kita</h2>
           <p class="text-slate-600 text-lg text-justify">
             Kami berspesialisasi dalam menciptakan solusi digital yang dirancang khusus untuk selaras dengan kebutuhan unik Anda. Dari konsep hingga peluncuran, kami merencanakan, mendesain, dan mengembangkan setiap proyek kustom dengan teliti, penuh semangat, dan presisi, memastikan hasilnya melampaui ekspektasi Anda.
           </p>
@@ -406,7 +263,7 @@
       <div class="flex items-center justify-between mb-8">
         <div>
           <div class="text-sm inline-block px-4 py-2 rounded-full bg-slate-100 text-slate-700 border">Our Projects</div>
-          <h2 class="text-4xl font-extrabold mt-4">Projects Gallery</h2>
+          <h2 class="text-4xl font-extrabold mt-4">Galeri Proyek</h2>
         </div>
         <div class="flex gap-3">
           <button id="prevBtn" class="p-3 rounded-xl bg-white shadow border">
@@ -433,10 +290,10 @@
           </article>
 
           <article class="project-card flex-shrink-0 w-full sm:w-1/2 snap-start fade-in">
-            <img class="project-media" src="img/project1.png" alt="Web Development">
+            <img class="project-media" src="img/project2.png" alt="Web Development">
             <div class="p-8">
               <h3 class="text-2xl font-extrabold mb-2">Web Development</h3>
-              <p class="text-slate-600">Tracking Pengiriman Barang</p>
+              <p class="text-slate-600">Kampaiyn - Jangkau Pasar Baru dengan Influencer Mikro</p>
             </div>
           </article>
 
@@ -462,7 +319,7 @@
             <div class="text-white font-extrabold text-lg">DjokiCoding</div>
           </div>
           <p class="text-white/80 max-w-md">
-            Daripada Mikir Keras, Mending Chill. <span class="font-semibold">DjokiCoding</span> Bikin Tugas Lo Done.
+            Daripada Banyak Mikir, Mending Bawa Chill. <span class="font-semibold">DjokiCoding</span> Bikin Tugas Lo Done Gapake Tapi!
         </div>
 
         <div>
@@ -507,65 +364,6 @@
     </div>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // FAQ Accordion
-      document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-          const answer = button.nextElementSibling;
-          const icon = button.querySelector('.faq-icon');
-          
-          document.querySelectorAll('.faq-answer.show').forEach(openAnswer => {
-            if (openAnswer !== answer) {
-              openAnswer.classList.remove('show');
-              openAnswer.previousElementSibling.querySelector('.faq-icon').classList.remove('rotate');
-            }
-          });
-          
-          answer.classList.toggle('show');
-          icon.classList.toggle('rotate');
-        });
-      });
-
-      // Project Slider
-      const slider = document.getElementById('project-slider');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-
-      function getSlideWidth() {
-        const card = slider.querySelector('.project-card');
-        return card.offsetWidth + 32; // gap-8 = 32px
-      }
-
-      prevBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: -getSlideWidth(), behavior: 'smooth' });
-      });
-
-      nextBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: getSlideWidth(), behavior: 'smooth' });
-      });
-
-      // Intersection Observer for Scroll Animations
-      const fadeInElements = document.querySelectorAll('.fade-in');
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      fadeInElements.forEach(el => {
-        observer.observe(el);
-      });
-    });
-  </script>
+  <script src="script.js"> </script>
 </body>
 </html>
