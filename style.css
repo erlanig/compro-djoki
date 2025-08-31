@@ -34,7 +34,7 @@
     .hero-figure {
         width: 360px;
         height: 360px;
-        border-radius: 999px;
+        /* border-radius: 999px; */
         overflow: visible; /* agar elemen absolute bisa muncul di luar lingkaran */
         display: block;
         object-fit: contain; /* jangan cover, supaya transparan tetap terlihat */
