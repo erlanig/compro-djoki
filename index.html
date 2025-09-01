@@ -14,7 +14,12 @@
 
   <header class="fixed w-full z-50 bg-white/60 backdrop-blur-sm border-b">
     <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <a class="font-extrabold text-xl tracking-tight" href="#">Djoki<span class="text-purple-600">Coding.</span></a>
+      <!-- Logo -->
+      <a class="font-extrabold text-xl tracking-tight" href="#">
+        Djoki<span class="text-purple-600">Coding.</span>
+      </a>
+
+      <!-- Desktop Menu -->
       <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-700">
         <a href="#services" class="hover:text-purple-700">Services</a>
         <a href="#projects-innovation" class="hover:text-purple-700">Project Innovation</a>
@@ -22,8 +27,23 @@
         <a href="#faq" class="hover:text-purple-700">FAQ</a>
         <a href="#contact" class="hover:text-purple-700">Contact</a>
       </nav>
-      <div class="md:hidden"></div>
+
+      <!-- Mobile Hamburger -->
+      <button id="menu-btn" class="md:hidden flex flex-col gap-1.5">
+        <span class="block w-6 h-0.5 bg-slate-800"></span>
+        <span class="block w-6 h-0.5 bg-slate-800"></span>
+        <span class="block w-6 h-0.5 bg-slate-800"></span>
+      </button>
     </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="hidden flex-col bg-white/90 backdrop-blur-sm border-t px-6 py-4 space-y-4 text-sm font-medium text-slate-700 md:hidden">
+      <a href="#services" class="block hover:text-purple-700">Services</a>
+      <a href="#projects-innovation" class="block hover:text-purple-700">Project Innovation</a>
+      <a href="#commitment" class="block hover:text-purple-700">Komitmen</a>
+      <a href="#faq" class="block hover:text-purple-700">FAQ</a>
+      <a href="#contact" class="block hover:text-purple-700">Contact</a>
+    </nav>
   </header>
 
   <main class="pt-20">
